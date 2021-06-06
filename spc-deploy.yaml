@@ -1,6 +1,6 @@
 ---
 - name: Deploy Spring Petclinic as Linux Service
-  host: appserver
+  hosts: appserver
   become: yes
   tasks:
     - name: Update ubuntu packages and install java
