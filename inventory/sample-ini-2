@@ -1,0 +1,7 @@
+198.168.10.11
+
+[webserver]
+web[25].abhi.com
+
+[dbserver]
+db[10].abhi.com
