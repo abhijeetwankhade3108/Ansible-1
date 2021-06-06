@@ -12,7 +12,7 @@
   tasks:
     - name: Display Java Package Installing
       debug:
-        var: java_package
+        var: java_packages
     - name: Checking variables
       debug:
         var: test_var
