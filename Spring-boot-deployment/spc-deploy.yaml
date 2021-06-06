@@ -10,7 +10,7 @@
     user_name: springbootuser
     test_var: Just for checking purpose
   tasks:
-    - name: Display Java Package Installing
+    - name: Display java package installing
       debug:
       var: java_package
     - name: Checking variables
