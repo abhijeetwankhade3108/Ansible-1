@@ -29,7 +29,7 @@
     - name: Change ownership of file
       file:
         path: "{{ app_file_name }}"
-        owner: springbootuser
+        owner: "{{ user_name }}"
         mode: '500'
         state: file
     - name: Copy the file From Local Machine To Remote spring petlinic service
