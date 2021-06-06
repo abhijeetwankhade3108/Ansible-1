@@ -4,9 +4,9 @@ all:
   chlidren:
     webserver:
       hosts:
-        web1.abhi.com:
-        web2.abhi.com:
+        web1.qt.com:
+        web2.qt.com:
     dbserver:
       hosts:
-        db1.abhi.com:
-        db2.abhi.com: 
+        db1.qt.com:
+        db2.qt.com: 
