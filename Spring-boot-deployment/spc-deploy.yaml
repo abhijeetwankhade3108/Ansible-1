@@ -8,7 +8,14 @@
     app_download_url: https://springpetclinicservice.s3.amazonaws.com/spring-petclinic-2.4.2.jar
     app_file_name: /usr/share/springpetclinic/spring-petclinic-2.4.2.jar
     user_name: springbootuser
+    test_vars: Just for checking purpose
   tasks:
+    - name: Display Java Package Installing
+      debug:
+      vars: java_package
+    - name: Checking variables
+      debug:
+      vars: test_var
     - name: Update ubuntu packages and install java
       apt:
         name: "{{ java_packages }}"
