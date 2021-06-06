@@ -7,4 +7,4 @@ all:
         web[1:50:2].qt.com:
     dbserver:
       hosts:
-        db[a-z].qt.com:
+        db[1:20].qt.com:
