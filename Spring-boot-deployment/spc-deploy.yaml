@@ -1,43 +1,44 @@
 ---
-- name: Deploy Spring Petclinic as Linux Service
+- name: Deploy spring petclinic as Linux Service
   hosts: appserver
   become: yes
   vars:
-    java_packages: openjdk-11-jdk
+    java_package: openjdk-11-jdk
     app_dir: /usr/share/springpetclinic
-    app_download_url: https://springpetclinicservice.s3.amazonaws.com/spring-petclinic-2.4.2.jar
+    app_download_url: https://referenceapplicationskhaja.s3-us-west-2.amazonaws.com/spring-petclinic-2.4.2.jar
     app_file_name: /usr/share/springpetclinic/spring-petclinic-2.4.2.jar
-    user_name: springbootuser
+    app_username: springbootuser
   tasks:
     - name: Update ubuntu packages and install java
       apt:
-        name: "{{ java_packages }}"
+        name: openjdk-11-jdk
+        name: {{ java_package }}
         update_cache: yes
         state: present
-    - name: Creating spring petclinic directory
+    - name: Create a spring petclinic directory
       file:
-        path: "{{ app_dir }}"
+        path: /usr/share/springpetclinic
+        path: {{ app_dir }}
         state: directory
-    - name: Download Spring Petclinic
-        get_url: "{{ app_download_url }}"
-        dest: "{{ app_file_name }}"
-    - name: Create Spring Bootuser
+    - name: download spring petclinic
+      get_url:
+        url: https://springpetclinicservice.s3.amazonaws.com/spring-petclinic-2.4.2.jar
+        dest: /usr/share/springpetclinic/spring-petclinic-2.4.2.jar
+        url: {{ app_download_url }}
+        dest: {{ app_file_name }}
+    - name: Create springbootuser
       user:
-        name: "{{ user_name }}"
-        password: "{{ user_name }}"
+        name: springbootuser
+        password: springbootuser
+        name: {{ app_username }}
+        password: {{ app_username }}
         state: present
-    - name: Change ownership of file
+    - name: Change ownership of jar file
       file:
-        path: "{{ app_file_name }}"
-        owner: "{{ user_name }}"
+        path: /usr/share/springpetclinic/spring-petclinic-2.4.2.jar
+        owner: springbootuser
+        path: {{ app_file_name }}
+        owner: {{ app_username }}
         mode: '500'
         state: file
-    - name: Copy the file From Local Machine To Remote spring petlinic service
-      copy:
-        dest: /etc/systemd/system/springpetclinic.service
-        src: springpetclinic.service
-    - name: Enable and start spring petclinic service
-      systemd:
-        name: springpetclinic.service
-        enabled: yes
-        state: started
+    - name: Copy the spring petclinic service file
