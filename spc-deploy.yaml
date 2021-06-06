@@ -28,7 +28,7 @@
         mode: '500'
         state: file
     - name: Copy the file From Local Machine To Remote spring petlinic service
-        copy:
+      copy:
         dest: vi /etc/systemd/system/springpetclinic.service
         src: springpetclinic.service
     - name: Enable and start spring petclinic service
