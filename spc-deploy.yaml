@@ -13,7 +13,7 @@
         path: /usr/share/springpetclinic
         state: directory
     - name: Download Spring Petclinic
-      get_url: 
+      get_url:
         url: https://github.com/Abhi-wan123/Ansible/blob/master/spring-petclinic-2.4.2.jar
         dest: /usr/share/springpetclinic/spring-petclinic-2.4.2.jar
     - name: Create Spring Bootuser
