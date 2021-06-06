@@ -5,7 +5,7 @@
 172.31.16.104
 
 [appserver]
-172.31.24.78
+172.31.24.78 test_var=Frominventoryhost
 
 [dbserver]
 172.31.16.104
