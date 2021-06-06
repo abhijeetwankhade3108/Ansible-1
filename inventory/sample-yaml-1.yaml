@@ -3,8 +3,10 @@ all:
     192.168.10.11:
   chlidren:
     webserver:
-      web1.abhi.com:
-      web2.abhi.com:
+      hosts:
+        web1.abhi.com:
+        web2.abhi.com:
     dbserver:
-      db1.abhi.com
-      db2.abhi.com  
+      hosts:
+        db1.abhi.com:
+        db2.abhi.com: 
