@@ -10,12 +10,12 @@
     user_name: springbootuser
     test_var: Just for checking purpose
   tasks:
-    - name: Display java package installing
+    - name: Display Java Package Installing
       debug:
-      var: java_package
+        var: java_package
     - name: Checking variables
       debug:
-      var: test_var
+        var: test_var
     - name: Update ubuntu packages and install java
       apt:
         name: "{{ java_packages }}"
