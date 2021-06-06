@@ -12,10 +12,10 @@
   tasks:
     - name: Display Java Package Installing
       debug:
-      vars: java_package
+      var: java_package
     - name: Checking variables
       debug:
-      vars: test_var
+      var: test_var
     - name: Update ubuntu packages and install java
       apt:
         name: "{{ java_packages }}"
