@@ -35,4 +35,5 @@
       systemd:
         name: springpetclinic.service
         enabled: yes
-        state: started    
+        state: started
+        daemon_reload: yes
