@@ -32,13 +32,7 @@
         password: "{{ user_name }}"
         state: present
       notify: 
-        - debug message for user creation  
-    - name: Change ownership of file
-      file:
-        path: "{{ app_file_name }}"
-        owner: "{{ user_name }}"
-        mode: '500'
-        state: file
+        - Change ownership of jar file  
     - name: Copy the file From Local Machine To Remote spring petlinic service
       copy:
         dest: /etc/systemd/system/springpetclinic.service
@@ -49,6 +43,13 @@
         enabled: yes
         state: started
   handlers:
+    - name: Change ownership of jar file
+      file:
+        path: "{{ app_file_name }}"
+        owner: "{{ user_name }}"
+        mode: '500'
+        state: file
+
     - name: debug message for java
       debug:
         msg: Java with paackage {{ java_packages }} is installed
@@ -61,6 +62,4 @@
       debug:
         msg: file downloaded at {{ app_file_name }} location 
 
-    - name: debug message for user creation
-      debug:
-        msg: User with name {{ user_name }} created    
+    
