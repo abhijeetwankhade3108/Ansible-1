@@ -12,19 +12,31 @@
         name: "{{ java_packages }}"
         update_cache: yes
         state: present
+    - name: debug message for java
+      debug:
+        msg: Java with paackage {{ java_packages }} is installed
     - name: Creating spring petclinic directory
       file:
         path: "{{ app_dir }}"
         state: directory
+    - name: debug message for directory creation
+      debug:
+        msg: Directory created at {{ app_dir }}.    
     - name: Download Spring Petclinic
       get_url:
         url: "{{ app_download_url }}"
         dest: "{{ app_file_name }}"
+    - name: debug Message for download spring petclinic
+      debug:
+        msg: file downloaded at {{ app_file_name }} location
     - name: Create Spring Bootuser
       user:
         name: "{{ user_name }}"
         password: "{{ user_name }}"
         state: present
+    - name: debug message for user creation
+      debug:
+        msg: User with name {{ user_name }} created    
     - name: Change ownership of file
       file:
         path: "{{ app_file_name }}"
