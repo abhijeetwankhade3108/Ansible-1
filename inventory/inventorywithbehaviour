@@ -1,0 +1,2 @@
+[local]
+mydreammachine.abhi.com  ansible_host=localhost
