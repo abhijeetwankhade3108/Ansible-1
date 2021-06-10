@@ -1,0 +1,42 @@
+---
+- name: Deploy Spring Petclinic as Linux Service
+  hosts: appserver
+  become: yes
+  tasks:
+    - name: Fail the execution when distribution is not ubuntu
+      fail:
+        msg: This playbook only work on Ubuntu Distribution. support for other OS will be comming soon.
+        when: ansible_distribution != "Ubuntu"
+    - name: Update ubuntu packages and install java
+      apt:
+        name: "{{ java_packages }}"
+        update_cache: yes
+        state: present
+    - name: Creating spring petclinic directory
+      file:
+        path: "{{ app_dir }}"
+        state: directory
+    - name: Download Spring Petclinic
+      get_url:
+        url: "{{ app_download_url }}"
+        dest: "{{ app_file_name }}"
+    - name: Create Spring Bootuser
+      user:
+        name: "{{ user_name }}"
+        password: "{{ user_name }}"
+        state: present
+    - name: Change ownership of file
+      file:
+        path: "{{ app_file_name }}"
+        owner: "{{ user_name }}"
+        mode: '500'
+        state: file
+    - name: Copy the file From Local Machine To Remote spring petlinic service
+      copy:
+        dest: /etc/systemd/system/springpetclinic.service
+        src: springpetclinic.service
+    - name: Enable and start spring petclinic service
+      systemd:
+        name: springpetclinic.service
+        enabled: yes
+        state: started
