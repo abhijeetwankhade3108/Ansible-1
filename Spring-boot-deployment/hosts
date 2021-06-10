@@ -6,6 +6,7 @@
 
 [appserver]
 172.31.24.78 test_var=Frominventoryhost
+172.31.16.104
 
 [dbserver]
 172.31.16.104
