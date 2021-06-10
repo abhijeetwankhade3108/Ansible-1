@@ -9,15 +9,6 @@
     app_file_name: /usr/share/springpetclinic/spring-petclinic-2.4.2.jar
     user_name: springbootuser
   tasks:
-    - name: Display Java Package Installing
-      debug:
-        var: java_package
-    - name: Checking variables var1
-      debug:
-        var: test_var1
-    - name: Checking varibles var2
-      debug:
-        var: test_var2
     - name: Update ubuntu packages and install java
       apt:
         name: "{{ java_packages }}"
