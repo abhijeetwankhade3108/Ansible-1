@@ -2,17 +2,11 @@
 - name: Deploy Spring Petclinic as Linux Service
   hosts: appserver
   become: yes
-  vars:
-    java_packages: openjdk-11-jdk
-    app_dir: /usr/share/springpetclinic
-    app_download_url: https://springpetclinicservice.s3.amazonaws.com/spring-petclinic-2.4.2.jar
-    app_file_name: /usr/share/springpetclinic/spring-petclinic-2.4.2.jar
-    user_name: springbootuser
   tasks:
     - name: Fail the execution when distribution is not ubuntu
       fail:
         msg: This playbook only work on Ubuntu Distribution. support for other OS will be comming soon.
-        when: ansible_distribution != "Ubuntu"
+      when: "ansible_distribution" != "Ubuntu"
     - name: Update ubuntu packages and install java
       apt:
         name: "{{ java_packages }}"
