@@ -6,14 +6,23 @@
     - name: Fail the execution when distribution is not ubuntu
       fail:
         msg: This playbook only work on Ubuntu Distribution. support for other OS will be comming soon.
-      when: ansible_distribution != "Ubuntu"
+      when: ansible_facts['distribution'] != "Ubuntu" and ansible_facts['distribution'] != "CentOS"
     - name: Update ubuntu packages and install java
       apt:
-        name: "{{ java_packages }}"
+        name: "{{ java_package }}"
         update_cache: yes
         state: present
       notify:
         - debug message for java
+      when: ansible_facts['distribution'] == "Ubuntu"  
+    - name: install java
+      yum:
+        name: "{{ java_package }}"
+        update_cache: yes
+        state: present
+      notify:
+        - debug message for java
+      when: ansible_facts['distribution'] == "CentOS"
     - name: Creating spring petclinic directory
       file:
         path: "{{ app_dir }}"
@@ -52,7 +61,7 @@
 
     - name: debug message for java
       debug:
-        msg: Java with paackage {{ java_packages }} is installed
+        msg: Java with paackage {{ java_package }} is installed
 
     - name: debug message for directory creation
       debug:
