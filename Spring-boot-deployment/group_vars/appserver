@@ -4,4 +4,3 @@ app_dir: /usr/share/springpetclinic
 app_download_url: https://springpetclinicservice.s3.amazonaws.com/spring-petclinic-2.4.2.jar
 app_file_name: /usr/share/springpetclinic/spring-petclinic-2.4.2.jar
 user_name: springbootuser
-java_package: java-11-openjdk
