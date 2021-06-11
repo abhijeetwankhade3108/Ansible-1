@@ -3,26 +3,13 @@
   hosts: appserver
   become: yes
   tasks:
-    - name: Fail the execution when distribution is not ubuntu
+    - name: Fail the execution when distribution is not ubuntu and centos
       fail:
         msg: This playbook only work on Ubuntu Distribution. support for other OS will be comming soon.
       when: ansible_facts['distribution'] != "Ubuntu" and ansible_facts['distribution'] != "CentOS"
-    - name: Update ubuntu packages and install java
-      apt:
+    - name: Install java
+      package:
         name: "{{ java_package }}"
-        update_cache: yes
-        state: present
-      notify:
-        - debug message for java
-      when: ansible_facts['distribution'] == "Ubuntu"  
-    - name: install java
-      yum:
-        name: "{{ java_package }}"
-        update_cache: yes
-        state: present
-      notify:
-        - debug message for java
-      when: ansible_facts['distribution'] == "CentOS"
     - name: Creating spring petclinic directory
       file:
         path: "{{ app_dir }}"
