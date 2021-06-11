@@ -1,5 +1,5 @@
 vars:
-java_packages: openjdk-11-jdk
+java_package: openjdk-11-jdk
 app_dir: /usr/share/springpetclinic
 app_download_url: https://springpetclinicservice.s3.amazonaws.com/spring-petclinic-2.4.2.jar
 app_file_name: /usr/share/springpetclinic/spring-petclinic-2.4.2.jar
