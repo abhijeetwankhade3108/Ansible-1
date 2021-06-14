@@ -1,0 +1,11 @@
+[Unit]
+Description=A Lamp Stack
+After=syslog.target
+
+[Service]
+User=lampuser
+ExecStart=/usr/bin/java -jar /usr/share/springpetclinic/spring-petclinic-2.4.2.jar
+SuccessExitStatus=143 
+
+[Install] 
+WantedBy=multi-user.target

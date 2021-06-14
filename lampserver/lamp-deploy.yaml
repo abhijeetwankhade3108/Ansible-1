@@ -1,0 +1,50 @@
+---
+- name: Deploy LAMP service as Linux Sevice
+  hosts: webserver
+  become: yes
+  tasks:
+    - name: Fail the execution when distribution is not ubuntu and centos
+      fail:
+        msg: This playbook only work on Ubuntu Distribution. support for other OS will be comming soon.
+      when: ansible_facts['distribution'] != "Ubuntu" and ansible_facts['distribution'] != "CentOS"
+    - name: Installing apache 2
+      package:
+        name: "{{ apache_package }}"
+        state: present
+      notify:
+        - log install apache server  
+    - name: Install php package
+      package:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ php_package }}"
+      notify:
+        - log install php package  
+    - name: Copy the php.info page
+      copy:
+        src: info.php
+        dest: "{{ info_page_path }}"
+      notify:
+        - log info page copied
+        - restart apache
+    - name: Start service httpd, if not started
+      service:
+        name: "{{ apache_package }}"
+        enabled: yes
+        state: started
+    
+
+  handlers:
+    - name: log install apache server
+      debug:
+        msg: "apache server successfully installed with {{ apache_package }}"
+    - name: log install php package
+      debug:
+        msg: "php packages successfully installed with {{ php_package }}"
+    - name: log info page copied
+      debug:
+        msg: "info page copied into {{ info_page_path }} "
+    - name: restart apache
+      service:
+        name: "{{ apache_package }}"
+        state: restarted 
