@@ -68,7 +68,7 @@
     - name: Copy the tomcat user file
       template:
         src: tomcat-users.xml.j2
-        dest: "{{ tomcat_users_xml }}"
+        dest: "{{ tomcat_user_xml }}"
       notify:
         - restart tomcat
     - name: copy the context file
