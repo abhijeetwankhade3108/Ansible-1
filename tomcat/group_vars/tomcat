@@ -17,7 +17,7 @@ java_executable: /usr/lib/jvm/java-1.11.0-openjdk-amd64
 tomcat_service_file: /etc/systemd/system/tomcat.service
 tomcat_admin_username: abhidevops
 tomcat_admin_password: Abhi@1996
-tomcat_admin_password:
+tomcat_admin_roles:
   - manager-gui
   - admin-gui
 tomcat_description: Apache Tomcat Web Application Container by DevOps Team
