@@ -51,7 +51,7 @@
         path: "{{ items }}"
         owner: "{{ tomcat_group }}"
         group: "{{ tomcat_group }}"
-        recurse: yes
+        recurse: true
         state: directory
       loop: "{{ tomcat_dir_for_group_permission }}"   
 
