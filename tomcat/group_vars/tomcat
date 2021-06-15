@@ -15,3 +15,11 @@ tomcat_dir_for_group_permission:
   -  opt/tomcat/logs
 java_executable: /usr/lib/jvm/java-1.11.0-openjdk-amd64  
 tomcat_service_file: /etc/systemd/system/tomcat.service
+tomcat_admin_username: abhidevops
+tomcat_admin_password: Abhi@1996
+tomcat_admin_password:
+  - manager-gui
+  - admin-gui
+tomcat_description: Apache Tomcat Web Application Container by DevOps Team
+tomcat_users_xml: /opt/tomcat/conf/tomcat-users.xml
+tomcat_manager_context: /opt/tomcat/webapps/manager/META-INF/context.xml 
