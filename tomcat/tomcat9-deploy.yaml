@@ -58,16 +58,23 @@
       template:
         src: tomcat.service.j2
         dest: "{{ tomcat_service_file }}"
+      notify:
+        - reload daemon  
+    - name: Enabling and starting the tomcate service
+      service:
+        name: tomcat.service
+        enabled: yes
+        state: started 
+  handlers:
     - name: reload daemon
       systemd:
         name: tomcat.service
         daemon_reload: yes
         state: started
-    - name: Enabling and starting the tomcate service
-      service:
+    - name: restart tomcat
+      service: 
         name: tomcat.service
-        enabled: yes
-        state: started              
+        state: restarted                       
 
 
         
