@@ -27,8 +27,33 @@
       get_url:
         url: "{{ tomcat_download_url }}"
         dest: "{{ tomcat_download_dest }}"
-    - name: Extracting tar file 
-      unarchive:
-        src: "{{ tomcat_download_dest }}"
-        dest: "{{ tomcat_home_dir }}"    
+    - name: check if tomcat is extracted  
+      stat:
+        path: "{{ tomcat_check_dir }}"
+      register: "{{ tomcat_conf }}"
+    - name: Untar the tomcat
+      command: tar xzvf "{{ tomcat_download_dest }}" -C "{{ tomcat_home_dir }}" --strip-components=1
+      when: not tomcat_conf.stat.exists
+    - name: Update group permission for tomcat dir
+      file:
+        path: "{{ tomcat_home_dir }}"
+        owner: "{{ tomcat_group }}"
+        group: "{{ tomcat_group }}"
+        recurse: yes
+        state: directory
+    - name: Update group permission for tomcat_conf dir
+      file:
+        path: "{{ tomcat_check_dir }}"
+        mode: u=rwx,g=rx
+        state: directory
+    - name: Update recursive ownership of tomcat
+      file:
+        path: "{{ items }}"
+        owner: "{{ tomcat_group }}"
+        group: "{{ tomcat_group }}"
+        recurse: yes
+        state: directory
+      loop: "{{ tomcat_dir_for_group_permission }}"   
+
+
         
