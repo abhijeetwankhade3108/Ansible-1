@@ -48,12 +48,26 @@
         state: directory
     - name: Update recursive ownership of tomcat
       file:
-        path: "{{ item }}"
+        path: "{{ items }}"
         owner: "{{ tomcat_group }}"
         group: "{{ tomcat_group }}"
         recurse: true
         state: directory
-      loop: "{{ tomcat_dir_for_group_permission }}"   
+      loop: "{{ tomcat_dir_for_group_permission }}"
+    - name: Template a tomcat service file
+      template:
+        src: tomcat.service.j2
+        dest: "{{ tomcat_service_file }}"
+    - name: reload daemon
+      systemd:
+        name: tomcat.service
+        daemon_reload: yes
+        state: started
+    - name: Enabling and starting the tomcate service
+      service:
+        name: tomcat.service
+        enabled: yes
+        state: started              
 
 
         
