@@ -1,0 +1,38 @@
+---
+- name: Installing tomcat
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Installing java
+      apt:
+        - name: Updating packages
+          state: present
+    - name: Installing Java
+      package:
+        name: "{{ java_package }}"
+        update_cache: yes
+        state: present
+    - name: Tomcat group created
+      group:
+        name: "{{ tomcat_group }}"
+        state: present
+    - name: craeting tomcat home directory
+      file:
+        path: "{{ tomcat_home_dir }}"
+        state: directory   
+    - name: Tomcat user creating
+      user:
+        name: "{{ tomcat_user }}"
+        shell: "{{ tomcat_shell }}"
+        group: "{{ tomcat_group }}"
+        home: "{{ tomcat_home_dir }}"
+        state: present
+    - name: Downloading tomcat tar file
+      get_url:
+        url: "{{ tomcat_download_url }}"
+        dest: "{{ tomcat_download_dest }}"
+    - name: Extracting tar file 
+      unarchive:
+        src: "{{ tomcat_download_dest }}"
+        dest: "{{ tomcat_home_dir }}"    
+        
