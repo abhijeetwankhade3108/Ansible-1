@@ -48,7 +48,7 @@
         state: directory
     - name: Update recursive ownership of tomcat
       file:
-        path: "{{ items }}"
+        path: "{{ item }}"
         owner: "{{ tomcat_group }}"
         group: "{{ tomcat_group }}"
         recurse: true
