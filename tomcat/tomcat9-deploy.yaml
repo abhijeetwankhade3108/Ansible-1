@@ -5,8 +5,8 @@
   tasks:
     - name: Installing java
       apt:
-        - name: Updating packages
-          state: present
+        name: Updating packages
+        state: present
     - name: Installing Java
       package:
         name: "{{ java_package }}"
