@@ -21,5 +21,5 @@ tomcat_admin_password:
   - manager-gui
   - admin-gui
 tomcat_description: Apache Tomcat Web Application Container by DevOps Team
-tomcat_users_xml: /opt/tomcat/conf/tomcat-users.xml
+tomcat_user_xml: /opt/tomcat/conf/tomcat-users.xml
 tomcat_manager_context: /opt/tomcat/webapps/manager/META-INF/context.xml 
