@@ -1,4 +1,4 @@
 [webserver]
 172.31.24.78 ansible_host_interpreter=/usr/bin/python3
-172.31.16.104 ansible_host_interpreter=/usr/bin/python3
-localhost 
+172.31.16.104 
+localhost ansible_host_interpreter=/usr/bin/python3
