@@ -1,0 +1,10 @@
+---
+- name: Craete Necessary files (test2)
+  hosts: all
+  become: yes
+  tasks:
+    - name: Creating files
+      file:
+        path: "{{ item }}"
+        state: file
+      loop: "{{ file_list }}"  

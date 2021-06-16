@@ -1,0 +1,9 @@
+---
+- name: Install Utility software (test1)
+  hosts: all
+  import_playbook: test1.yaml
+  vars:
+    utility_software:
+      - git
+      - wget
+      - tree
