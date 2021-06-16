@@ -3,10 +3,6 @@
   hosts: all
   become: yes
   tasks:
-    - name:
-      package:
-        name: "{{ update }}"
-        state: present
     - name: Install utility softwares
       package:
         name: "{{ item }}"
