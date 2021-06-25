@@ -1,0 +1,37 @@
+---
+# tasks file for role_skeleton
+- name: Fail the execution when distribution is not ubuntu and centos
+  fail:
+    msg: This playbook only work on Ubuntu Distribution. support for other OS will be comming soon.
+  when: ansible_facts['distribution'] != "Ubuntu" and ansible_facts['distribution'] != "CentOS"
+- name: Install java
+  package:
+    name: "{{ java_package }}"
+- name: Creating spring petclinic directory
+  file:
+    path: "{{ app_dir }}"
+    state: directory
+  notify: 
+    - debug message for directory creation
+- name: Download Spring Petclinic
+  get_url:
+    url: "{{ app_download_url }}"
+    dest: "{{ app_file_name }}"
+  notify: 
+    - debug Message for download spring petclinic
+- name: Create Spring Bootuser
+  user:
+    name: "{{ user_name }}"
+    password: "{{ user_name }}"
+    state: present
+  notify: 
+    - Change ownership of jar file  
+- name: Copy the file From Local Machine To Remote spring petlinic service
+  copy:
+    dest: /etc/systemd/system/springpetclinic.service
+    src: springpetclinic.service
+- name: Enable and start spring petclinic service
+  systemd:
+     name: springpetclinic.service
+     enabled: yes
+     state: started
