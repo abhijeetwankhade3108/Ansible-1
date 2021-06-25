@@ -1,0 +1,18 @@
+---
+# handlers file for role_skeleton
+- name: log install apache server
+  debug:
+    msg: "apache server successfully installed with {{ apache_package }}"
+
+- name: log install php package
+  debug:
+    msg: "php packages successfully installed with {{ php_package }}"
+
+- name: log info page copied
+  debug:
+    msg: "info page copied into {{ info_page_path }}"
+    
+- name: restart apache
+  service:
+    name: "{{ apache_package }}"
+    state: restarted 
